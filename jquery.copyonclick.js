@@ -32,7 +32,7 @@ $.fn.copyOnClick = function(txt) {
 			});
 		} else {
 			var clip = $$.data('clip');
-			if (typeof clip == 'undefined') {
+			if (clip == null) {
 				clip = new ZeroClipboard.Client();
 				$$.data('clip', clip);
 			}
@@ -61,7 +61,7 @@ $.fn.copyOnClick = function(txt) {
 	});
 };
 
-var base = $('script[src*=jquery.copyonclick]').attr('src').replace(/jquery\.copyonclick(\.min)?\.js/, '');
+var base = $('script[src*=jquery.copyonclick]').attr('src').replace(/jquery\.copyonclick(\.min)?\.js.*$/, '');
 ZeroClipboard.setMoviePath(base + 'ZeroClipboard.swf');
 
 })(jQuery);
