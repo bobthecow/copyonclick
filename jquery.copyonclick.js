@@ -21,7 +21,11 @@
  */
 ;(function($){
 
-$.fn.copyOnClick = function(txt) {
+$.fn.copyOnClick = function(txt, o) {
+
+	if (typeof o !== 'undefined' && typeof o.moviePath !== 'undefined') {
+		ZeroClipboard.setMoviePath(o.moviePath);
+	}
 
 	return this.each(function() {
 		var $$ = $(this);
@@ -61,7 +65,9 @@ $.fn.copyOnClick = function(txt) {
 	});
 };
 
-var base = $('script[src*=jquery.copyonclick]').attr('src').replace(/jquery\.copyonclick(\.min)?\.js.*$/, '');
-ZeroClipboard.setMoviePath(base + 'ZeroClipboard.swf');
+var src = $('script[src*="jquery.copyonclick"]').attr('src');
+if (typeof src !== 'undefined') {
+	ZeroClipboard.setMoviePath(src.replace(/jquery\.copyonclick(\.min)?\.js.*$/, 'ZeroClipboard.swf'));
+}
 
 })(jQuery);
